@@ -14,6 +14,7 @@ class Game {
     this.board = new Chess();
     this.startTime = new Date();
     this.moveCount = 0;
+
     this.player1.send(
       JSON.stringify({
         type: INIT_GAME,
@@ -22,6 +23,7 @@ class Game {
         },
       })
     );
+
     this.player2.send(
       JSON.stringify({
         type: INIT_GAME,
