@@ -88,6 +88,7 @@ class Game {
     }
 
     try {
+      console.log({ move });
       this.board.move(move);
       this.moveCount++;
     } catch (e) {

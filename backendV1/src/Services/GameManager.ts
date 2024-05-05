@@ -44,6 +44,7 @@ class GameManager {
           );
           if (game) {
             const res = game.makeMove(socket, message.move);
+            console.log(game.board);
             if (res === GAME_OVER) {
               this.games = this.games.filter((g) => {
                 return game !== g;

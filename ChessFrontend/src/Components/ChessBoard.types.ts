@@ -1,4 +1,4 @@
-import { Color, PieceSymbol, Square } from 'chess.js';
+import { Chess, Color, PieceSymbol, Square } from 'chess.js';
 
 export type chessProps = {
   board: ({ square: Square; type: PieceSymbol; color: Color } | null)[][];
@@ -8,4 +8,5 @@ export type chessProps = {
       ({ square: Square; type: PieceSymbol; color: Color } | null)[][]
     >
   >;
+  chess: Chess | null;
 };
