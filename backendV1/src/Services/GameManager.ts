@@ -1,10 +1,10 @@
 import Game from './Game';
 import { WebSocket } from 'ws';
-import { INIT_GAME, MOVE } from './Messages';
+import { GAME_OVER, INIT_GAME, MOVE, QUIT } from './Messages';
 
 //need a user class and a game class
 class GameManager {
-  private games: Game[];
+  private games: (Game | null)[];
   private pendingUser: WebSocket | null;
   private users: WebSocket[];
 
@@ -39,11 +39,30 @@ class GameManager {
         }
 
         if (message.type == MOVE) {
-          const game = this.games.find(
-            (game) => game.player1 === socket || game.player2 === socket
+          let game: Game | null | undefined = this.games.find(
+            (game) => game?.player1 === socket || game?.player2 === socket
           );
           if (game) {
-            game.makeMove(socket, message.move);
+            const res = game.makeMove(socket, message.move);
+            if (res === GAME_OVER) {
+              this.games = this.games.filter((g) => {
+                return game !== g;
+              });
+              game = null;
+            }
+          }
+        }
+
+        if (message.type == QUIT) {
+          let game: Game | null | undefined = this.games.find(
+            (game) => game?.player1 === socket || game?.player2 === socket
+          );
+          if (game) {
+            game.quit(socket);
+            this.games = this.games.filter((g) => {
+              return game !== g;
+            });
+            game = null;
           }
         }
       } catch (e) {

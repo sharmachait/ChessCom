@@ -5,12 +5,14 @@ import Game from './Pages/Game.tsx';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={'/'} element={<Landing />}></Route>
-        <Route path={'/game'} element={<Game />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <div className="h-screen bg-gray-900">
+      <BrowserRouter>
+        <Routes>
+          <Route path={'/'} element={<Landing />}></Route>
+          <Route path={'/game'} element={<Game />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

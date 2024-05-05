@@ -9,6 +9,9 @@ const gameManager = new GameManager([]);
 
 wss.on('connection', function connection(ws) {
   gameManager.addUser(ws);
-
-  ws.on('close', () => gameManager.removeUser(ws));
+  // add pinger to ws
+  ws.on('close', () => {
+    console.log('closing');
+    gameManager.removeUser(ws);
+  }); //TODO: timeout handling
 });
