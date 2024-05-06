@@ -8,5 +8,5 @@ export type chessProps = {
       ({ square: Square; type: PieceSymbol; color: Color } | null)[][]
     >
   >;
-  chess: Chess | null;
+  chess: Chess;
 };

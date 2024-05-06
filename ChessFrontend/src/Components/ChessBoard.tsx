@@ -1,6 +1,6 @@
 import { chessProps } from './ChessBoard.types.ts';
 import { useState } from 'react';
-import { Square } from 'chess.js';
+import { Color, PieceSymbol, Square } from 'chess.js';
 import { MOVE } from '../Pages/Game.tsx';
 
 function ChessBoard(props: chessProps) {
@@ -26,6 +26,10 @@ function ChessBoard(props: chessProps) {
       setFrom(null);
     }
   }
+  function getPiece(type: PieceSymbol, color: Color): string {
+    let piece: string = color + type + '.png';
+    return piece;
+  }
   return (
     <div className="text-white">
       {board.map((row, i) => {
@@ -43,7 +47,14 @@ function ChessBoard(props: chessProps) {
                   className={`w-24 h-24 ${(i + j) % 2 ? 'bg-green-700' : 'bg-yellow-100'} flex justify-center items-center`}
                   key={j}
                 >
-                  {square ? square.type : ''}
+                  {square ? (
+                    <img
+                      src={`/${getPiece(square.type, square.color)}`}
+                      className={'w-16'}
+                    />
+                  ) : (
+                    ''
+                  )}
                 </div>
               );
             })}
