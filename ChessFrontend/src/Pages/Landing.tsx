@@ -12,7 +12,7 @@ const Landing = () => {
         <div className="flex justify-evenly">
           <div className="flex justify-center ">
             <img
-              src="../../board.png"
+              src="../../public/board.png"
               className="max-w-72 md:max-w-96 xl:max-w-xl"
             />
           </div>
